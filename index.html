@@ -113,17 +113,11 @@
     .result-item strong.negative { color: var(--red); }
     .result-item.featured { background: var(--cobalt-soft); margin: -9px -7px; padding: 9px 7px; }
 
-    .switch-line { display: flex; gap: 10px; align-items: flex-start; margin-top: 15px; }
-    .switch-line input { width: 19px; height: 19px; margin: 2px 0 0; accent-color: var(--cobalt); flex: 0 0 auto; }
-    .switch-line span { color: var(--ink); font-weight: 600; }
-    .overlap-note { margin: 8px 0 0 29px; color: var(--muted); font-size: 13px; }
-
     .conversion-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .conversion-grid .control-group + .control-group { margin-top: 0; }
-    .conversion-options { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 18px; align-items: start; margin-top: 15px; }
+    .conversion-options { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; margin-top: 15px; }
     .conversion-options .control-group { margin-top: 0; }
-    .conversion-options .switch-line { margin-top: 0; }
-    .conversion-options .overlap-note { margin-left: 29px; }
+    .cohort-receipt { margin: 9px 0 0; padding: 9px 11px; border-radius: 7px; background: var(--cobalt-soft); color: var(--muted); font-size: 12px; line-height: 1.45; }
 
     .channel-ledger { margin-top: 14px; border-top: 1px solid var(--line); }
     .channel-row { display: grid; grid-template-columns: minmax(84px, 1fr) repeat(4, minmax(75px, 0.8fr)); gap: 8px; padding: 9px 0; border-bottom: 1px solid var(--line); align-items: end; }
@@ -148,7 +142,6 @@
       .bridge-op { display: none; }
       .inputs { grid-template-columns: 1fr; }
       .conversion-grid, .conversion-options { grid-template-columns: 1fr; }
-      .conversion-options .switch-line { margin-top: 3px; }
       .result-strip { grid-template-columns: 1fr 1fr; }
       .channel-row { grid-template-columns: 1fr 1fr; }
       .channel-row:first-child { display: none; }
@@ -167,7 +160,7 @@
       <div class="masthead-copy">
         <p class="context">AI Employee pricing decision</p>
         <h1>$20 Agency Plan Economics</h1>
-        <p class="subtitle">Model incremental seat revenue against the PPU and $97 revenue that could be displaced.</p>
+        <p class="subtitle">Model incremental seat revenue against the PPU and subscription revenue that could be displaced.</p>
       </div>
       <div class="stamp"><strong>September 2026</strong>Ask AI + AI Studio<br>Agency roles only</div>
     </header>
@@ -176,8 +169,8 @@
       <div class="decision-main">
         <div>
           <div class="decision-label">Net monthly impact</div>
-          <div class="decision-value positive" id="net-impact">+$307.9K</div>
-          <div class="decision-annual" id="annual-impact">+$3.69M annualized</div>
+          <div class="decision-value positive" id="net-impact">+$344.8K</div>
+          <div class="decision-annual" id="annual-impact">+$4.14M annualized</div>
         </div>
         <div class="decision-status"><span class="status-dot" id="status-dot"></span><span id="decision-status">Base case is net positive</span></div>
       </div>
@@ -186,9 +179,9 @@
         <div class="bridge-equation">
           <div class="bridge-item"><span>Incremental MRR</span><strong id="bridge-growth">$599.2K</strong></div>
           <div class="bridge-op">+</div>
-          <div class="bridge-item"><span>Existing-user seat MRR</span><strong id="bridge-existing">$97.7K</strong></div>
+          <div class="bridge-item"><span>Existing-user seat MRR</span><strong id="bridge-existing">$187.9K</strong></div>
           <div class="bridge-op">−</div>
-          <div class="bridge-item"><span>Revenue displaced</span><strong id="bridge-displaced">$389.1K</strong></div>
+          <div class="bridge-item"><span>Revenue displaced</span><strong id="bridge-displaced">$442.3K</strong></div>
         </div>
         <div class="bridge-note">Every user is attributed to one current revenue source before the $20 seat is applied.</div>
       </div>
@@ -226,18 +219,18 @@
         <div class="part-head">
           <p class="part-kicker">Revenue at risk</p>
           <h2 id="cannibal-title">Existing-user conversion</h2>
-          <p class="part-intro">One $20 seat replaces the attributed PPU or $97 revenue.</p>
+          <p class="part-intro">One $20 seat replaces the attributed PPU revenue or the $97 subscription ceiling.</p>
         </div>
         <div class="part-body">
           <div class="conversion-grid">
             <div class="control-group">
-              <div class="label-row"><label for="ppu-rate">PPU users that convert</label><output id="ppu-rate-output">15%</output></div>
-              <input id="ppu-rate" type="range" min="0" max="100" step="1" value="15">
+              <div class="label-row"><label for="ppu-rate">PPU-only users that convert</label><output id="ppu-rate-output">30%</output></div>
+              <input id="ppu-rate" type="range" min="0" max="100" step="1" value="30">
             </div>
 
             <div class="control-group">
-              <div class="label-row"><label for="sub97-rate">$97-linked users that convert</label><output id="sub97-rate-output">15%</output></div>
-              <input id="sub97-rate" type="range" min="0" max="100" step="1" value="15">
+              <div class="label-row"><label for="sub97-rate">Subscription-linked users that convert</label><output id="sub97-rate-output">30%</output></div>
+              <input id="sub97-rate" type="range" min="0" max="100" step="1" value="30">
             </div>
           </div>
 
@@ -250,25 +243,19 @@
               </select>
             </div>
 
-            <div>
-              <label class="switch-line" for="overlap-to-ppu">
-                <input id="overlap-to-ppu" type="checkbox">
-                <span>Attribute the 866 overlap users to PPU</span>
-              </label>
-              <p class="overlap-note" id="overlap-note">Overlap is counted once under $97.</p>
-            </div>
           </div>
+          <p class="cohort-receipt">September frozen cohorts: 29,592 PPU-only users across 26,383 agencies · 1,718 subscription-linked users across 1,502 agencies · subscription exposure uses a $97 ceiling. Mixed users are counted only under subscription.</p>
 
           <div class="channel-ledger" aria-live="polite">
             <div class="channel-row"><span>Channel</span><span>Converting users</span><span>Seat MRR</span><span>Displaced</span><span>Net</span></div>
-            <div class="channel-row"><span class="channel-name">PPU</span><span class="channel-number channel-users" id="ppu-users">4,581</span><span class="channel-number channel-seat" id="ppu-seat-mrr">$91.6K</span><span class="channel-number channel-displaced" id="ppu-displaced">$361.8K</span><span class="channel-number channel-net negative" id="ppu-net">−$270.2K</span></div>
-            <div class="channel-row"><span class="channel-name">$97-linked</span><span class="channel-number channel-users" id="sub97-users">305</span><span class="channel-number channel-seat" id="sub97-seat-mrr">$6.1K</span><span class="channel-number channel-displaced" id="sub97-displaced">$27.3K</span><span class="channel-number channel-net negative" id="sub97-net">−$21.2K</span></div>
+            <div class="channel-row"><span class="channel-name">PPU-only</span><span class="channel-number channel-users" id="ppu-users">8,878</span><span class="channel-number channel-seat" id="ppu-seat-mrr">$177.6K</span><span class="channel-number channel-displaced" id="ppu-displaced">$392.3K</span><span class="channel-number channel-net negative" id="ppu-net">−$214.7K</span></div>
+            <div class="channel-row"><span class="channel-name">Subscription-linked</span><span class="channel-number channel-users" id="sub97-users">516</span><span class="channel-number channel-seat" id="sub97-seat-mrr">$10.3K</span><span class="channel-number channel-displaced" id="sub97-displaced">$50.1K</span><span class="channel-number channel-net negative" id="sub97-net">−$39.7K</span></div>
           </div>
 
           <div class="result-strip">
-            <div class="result-item"><span>New seat MRR</span><strong id="existing-seat-mrr">$97.7K</strong></div>
-            <div class="result-item"><span>Revenue displaced</span><strong id="displaced-mrr">$389.1K</strong></div>
-            <div class="result-item featured"><span>Net impact</span><strong id="cannibal-net">−$291.3K</strong></div>
+            <div class="result-item"><span>New seat MRR</span><strong id="existing-seat-mrr">$187.9K</strong></div>
+            <div class="result-item"><span>Revenue displaced</span><strong id="displaced-mrr">$442.3K</strong></div>
+            <div class="result-item featured"><span>Net impact</span><strong id="cannibal-net">−$254.4K</strong></div>
           </div>
         </div>
       </section>
@@ -278,13 +265,12 @@
 
   <script>
     (() => {
-      const curves = {
-        to97: [0,106547.13,154627.68,190141.85,217980.96,240680.85,260027.87,276948.87,292013.70,305414.99,317413.66,328108.98,337734.19,346462.71,354464.91,361787.56,368541.83,374799.64,380551.80,385879.11,390806.30,395381.99,399671.63,403663.29,407380.74,410892.54,414182.13,417282.34,420210.30,422974.77,425599.39,428076.22,430428.69,432667.45,434793.40,436826.24,438777.85,440642.43,442442.08,444158.12,445804.44,447391.11,448910.69,450364.07,451752.73,453075.10,454344.74,455548.74,456696.86,457800.09,458854.27,459863.23,460830.78,461757.10,462662.44,463535.96,464369.65,465170.01,465932.54,466665.23,467372.74,468051.59,468705.99,469335.01,469936.58,470521.50,471089.78,471642.41,472183.75,472713.05,473229.92,473733.14,474221.58,474701.35,475164.08,475605.59,476032.07,476440.43,476835.48,477222.56,477600.77,477968.08,478326.33,478675.01,479017.48,479355.97,479692.19,480024.68,480333.85,480604.79,480845.83,481065.20,481271.81,481468.84,481662.82,481845.19,482007.07,482142.91,482221.20,482255.56,482263.66],
-        toPpu: [0,113242.04,164387.96,202298.37,232094.05,256491.90,277197.55,295232.20,311342.23,325677.72,338543.13,349998.65,360301.30,369651.30,378196.58,386037.01,393275.26,399941.07,406121.82,411810.83,417089.99,421985.77,426545.41,430816.15,434787.46,438502.33,442003.57,445297.30,448396.46,451325.02,454103.17,456729.05,459216.27,461580.06,463833.50,465975.86,468026.80,469989.81,471875.47,473684.05,475416.62,477078.98,478678.06,480212.52,481675.13,483069.21,484403.32,485677.05,486888.14,488044.62,489154.13,490215.40,491229.91,492201.32,493144.06,494057.86,494934.73,495772.76,496573.96,497341.27,498079.76,498789.61,499474.52,500132.15,500761.98,501369.94,501961.21,502538.33,503098.69,503647.22,504184.38,504705.69,505213.02,505707.88,506190.38,506650.75,507092.61,507517.36,507927.00,508325.83,508716.90,509097.48,509466.54,509827.09,510179.24,510527.99,510874.42,511216.53,511537.90,511820.35,512069.38,512296.46,512509.39,512712.45,512912.22,513099.72,513266.44,513405.65,513485.34,513520.45,513528.70]
-      };
-      const cohorts = {
-        to97: { ppuUsers: 30537, ppuRevenue: 482263.66, sub97Users: 2027, sub97Mrr: 181875 },
-        toPpu: { ppuUsers: 31403, ppuRevenue: 513528.70, sub97Users: 1161, sub97Mrr: 102368.95 }
+      const ppuTopRevenueCurve = [0.0,98766.915855,143101.88664,175651.896501,201139.473726,221992.481943,239779.162839,255463.808259,269347.020903,281687.712843,292651.121205,302440.144704,311265.97488,319278.725136,326639.315499,333406.61085,339620.444253,345365.27565,350650.137519,355554.657675,360095.731719,364324.811673,368283.247926,371950.834545,375392.377299,378618.318951,381670.626129,384540.609237,387253.435593,389821.310703,392251.446687,394555.932486,396742.169604,398822.746629,400810.275942,402711.708321,404531.265621,406281.754743,407951.496864,409557.951819,411100.741776,412583.627436,414005.519919,415359.316098,416652.356748,417891.290211,419070.708126,420194.34324,421270.08309,422301.978954,423286.699953,424231.517445,425138.006925,426022.459629,426876.471342,427695.999534,428480.320683,429229.495326,429948.481479,430641.297474,431307.587517,431951.318217,432569.383812,433159.636137,433731.684987,434288.590233,434830.863018,435359.409882,435877.184706,436385.061549,436878.823896,437359.414386,437827.961481,438287.188236,438727.4229,439147.576107,439554.293037,439945.629009,440325.619839,440697.964698,441062.55864,441415.782096,441760.649025,442097.086347,442427.633448,442755.812286,443081.712834,443402.152764,443698.551831,443958.696858,444190.57209,444402.741507,444602.228649,444793.428321,444981.727281,445158.759186,445316.356197,445450.408926,445528.009563,445562.013246,445569.861741];
+      const cohort = {
+        ppuUsers: 29592,
+        ppuRevenue: 445569.861741,
+        subscriptionUsers: 1718,
+        subscriptionPrice: 97
       };
       const seatPrice = 20;
       const $ = (id) => document.getElementById(id);
@@ -310,22 +296,18 @@
         const growthRate = Number($('growth-rate').value);
         const ppuRate = Number($('ppu-rate').value);
         const sub97Rate = Number($('sub97-rate').value);
-        const overlapToPpu = $('overlap-to-ppu').checked;
-        const cohort = overlapToPpu ? cohorts.toPpu : cohorts.to97;
-        const curve = overlapToPpu ? curves.toPpu : curves.to97;
-
         const eligibleAgencies = Math.max(0, totalAgencies - paidAgencies);
         const adoptingAgencies = eligibleAgencies * growthRate / 100;
         const growthSeats = adoptingAgencies * seatsPerAgency;
         const growthMrr = growthSeats * seatPrice;
 
         const ppuSeats = ppuRate === 0 ? 0 : Math.ceil(cohort.ppuUsers * ppuRate / 100);
-        const sub97Seats = sub97Rate === 0 ? 0 : Math.ceil(cohort.sub97Users * sub97Rate / 100);
+        const sub97Seats = sub97Rate === 0 ? 0 : Math.ceil(cohort.subscriptionUsers * sub97Rate / 100);
         const ppuSeatMrr = ppuSeats * seatPrice;
         const sub97SeatMrr = sub97Seats * seatPrice;
         const existingSeatMrr = ppuSeatMrr + sub97SeatMrr;
-        const ppuDisplaced = $('ppu-pattern').value === 'top' ? curve[ppuRate] : cohort.ppuRevenue * ppuRate / 100;
-        const sub97Displaced = cohort.sub97Mrr * sub97Rate / 100;
+        const ppuDisplaced = $('ppu-pattern').value === 'top' ? ppuTopRevenueCurve[ppuRate] : cohort.ppuRevenue * ppuRate / 100;
+        const sub97Displaced = sub97Seats * cohort.subscriptionPrice;
         const displaced = ppuDisplaced + sub97Displaced;
         const ppuNet = ppuSeatMrr - ppuDisplaced;
         const sub97Net = sub97SeatMrr - sub97Displaced;
@@ -355,10 +337,6 @@
         $('cannibal-net').textContent = signedMoney(cannibalNet);
         applySign($('cannibal-net'), cannibalNet);
 
-        $('overlap-note').textContent = overlapToPpu
-          ? 'Overlap counted once under PPU: includes 866 users and $31.3K revenue; excludes their $79.5K allocated $97 MRR.'
-          : 'Overlap counted once under $97: excludes 866 users and $31.3K PPU revenue; includes their $79.5K allocated $97 MRR.';
-
         const impact = $('net-impact');
         impact.textContent = signedMoney(net);
         applySign(impact, net);
@@ -370,7 +348,7 @@
         $('status-dot').classList.toggle('negative', net < 0);
       }
 
-      ['total-agencies','paid-agencies','seats-per-agency','growth-rate','ppu-rate','sub97-rate','ppu-pattern','overlap-to-ppu'].forEach((id) => {
+      ['total-agencies','paid-agencies','seats-per-agency','growth-rate','ppu-rate','sub97-rate','ppu-pattern'].forEach((id) => {
         $(id).addEventListener('input', update);
         $(id).addEventListener('change', update);
       });
