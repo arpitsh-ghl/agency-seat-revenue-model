@@ -7,7 +7,7 @@
   <title>$20 Agency Plan Economics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #12213a;
@@ -34,18 +34,18 @@
       min-width: 320px;
       background: var(--wash);
       color: var(--ink);
-      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-family: "Inter", system-ui, sans-serif;
       font-size: 16px;
       line-height: 1.45;
     }
     button, input, select { font: inherit; }
-    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0 56px; }
+    .shell { width: min(1280px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 30px; }
 
-    .masthead { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 22px; }
+    .masthead { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 16px; }
     .masthead-copy { max-width: 690px; }
     .context { margin: 0 0 7px; color: var(--cobalt); font-weight: 600; letter-spacing: 0.01em; }
-    h1 { margin: 0; color: var(--navy); font-size: clamp(34px, 5vw, 58px); line-height: 0.98; letter-spacing: -0.045em; font-weight: 700; }
-    .subtitle { margin: 14px 0 0; max-width: 660px; color: var(--muted); font-size: 18px; }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(32px, 4vw, 48px); line-height: 1; letter-spacing: -0.04em; font-weight: 800; }
+    .subtitle { margin: 9px 0 0; max-width: 720px; color: var(--muted); font-size: 16px; }
     .stamp { flex: 0 0 auto; border-left: 2px solid var(--line); padding-left: 18px; color: var(--muted); font-size: 14px; }
     .stamp strong { display: block; color: var(--ink); font-weight: 600; }
 
@@ -55,13 +55,13 @@
       box-shadow: var(--shadow);
       display: grid;
       grid-template-columns: minmax(260px, 0.75fr) minmax(460px, 1.25fr);
-      min-height: 234px;
-      margin-bottom: 26px;
+      min-height: 176px;
+      margin-bottom: 18px;
       overflow: hidden;
     }
-    .decision-main { padding: 30px 34px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid rgba(255,255,255,0.17); }
+    .decision-main { padding: 22px 28px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid rgba(255,255,255,0.17); }
     .decision-label { color: #b8c5db; font-size: 15px; }
-    .decision-value { margin-top: 7px; font-family: "IBM Plex Mono", monospace; font-size: clamp(42px, 6vw, 68px); line-height: 1; letter-spacing: -0.05em; }
+    .decision-value { margin-top: 5px; font-family: "Inter", system-ui, sans-serif; font-size: clamp(40px, 5vw, 58px); line-height: 1; letter-spacing: -0.045em; font-weight: 800; }
     .decision-value.positive { color: #65e1b1; }
     .decision-value.negative { color: #ff9ca6; }
     .decision-annual { margin-top: 10px; color: #d8e1ef; }
@@ -69,31 +69,31 @@
     .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #65e1b1; }
     .status-dot.negative { background: #ff9ca6; }
 
-    .bridge { padding: 30px 34px; display: grid; align-content: center; gap: 18px; }
+    .bridge { padding: 22px 28px; display: grid; align-content: center; gap: 13px; }
     .bridge-title { margin: 0; color: #d8e1ef; font-size: 15px; font-weight: 500; }
     .bridge-equation { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 13px; align-items: center; }
     .bridge-item { min-width: 0; }
     .bridge-item span { display: block; color: #aebbd0; font-size: 13px; }
-    .bridge-item strong { display: block; margin-top: 5px; font-family: "IBM Plex Mono", monospace; font-size: clamp(22px, 3vw, 31px); line-height: 1.1; font-weight: 600; white-space: nowrap; }
-    .bridge-op { color: #8795ac; font-family: "IBM Plex Mono", monospace; font-size: 22px; }
+    .bridge-item strong { display: block; margin-top: 4px; font-family: "Inter", system-ui, sans-serif; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.1; font-weight: 700; white-space: nowrap; letter-spacing: -0.03em; }
+    .bridge-op { color: #8795ac; font-family: "Inter", system-ui, sans-serif; font-size: 22px; }
     .bridge-note { color: #aebbd0; font-size: 13px; }
 
-    .parts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
-    .part { background: var(--paper); border: 1px solid var(--line); box-shadow: 0 10px 28px rgba(24, 41, 72, 0.055); }
-    .part-head { padding: 23px 26px 19px; border-bottom: 1px solid var(--line); }
+    .parts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+    .part { min-width: 0; height: 100%; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 10px 28px rgba(24, 41, 72, 0.055); display: flex; flex-direction: column; }
+    .part-head { padding: 17px 22px 14px; border-bottom: 1px solid var(--line); }
     .part-kicker { margin: 0 0 4px; color: var(--cobalt); font-weight: 600; }
-    h2 { margin: 0; color: var(--navy); font-size: 26px; line-height: 1.1; letter-spacing: -0.025em; }
-    .part-intro { margin: 8px 0 0; color: var(--muted); }
-    .part-body { padding: 23px 26px 26px; }
+    h2 { margin: 0; color: var(--navy); font-size: 24px; line-height: 1.1; letter-spacing: -0.025em; }
+    .part-intro { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+    .part-body { padding: 17px 22px 20px; flex: 1; display: flex; flex-direction: column; }
 
-    .control-group + .control-group { margin-top: 20px; }
+    .control-group + .control-group { margin-top: 16px; }
     .label-row { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin-bottom: 8px; }
     label, .field-label { color: var(--ink); font-weight: 600; }
-    output { color: var(--cobalt); font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+    output { color: var(--cobalt); font-family: "Inter", system-ui, sans-serif; font-weight: 700; }
     input[type="range"] { width: 100%; accent-color: var(--cobalt); cursor: pointer; }
     input[type="range"]:focus-visible, input[type="number"]:focus-visible, select:focus-visible, input[type="checkbox"]:focus-visible { outline: 3px solid rgba(45,91,255,0.23); outline-offset: 2px; }
 
-    .inputs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 21px; }
+    .inputs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 15px; }
     .input-field { min-width: 0; }
     .input-field label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 13px; font-weight: 500; }
     input[type="number"], select {
@@ -102,13 +102,13 @@
       background: white;
       color: var(--ink);
       border-radius: 7px;
-      padding: 9px 10px;
+      padding: 8px 10px;
     }
     .helper { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
 
-    .result-strip { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .result-strip { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .result-item span { display: block; color: var(--muted); font-size: 13px; }
-    .result-item strong { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; color: var(--navy); font-size: 18px; line-height: 1.2; white-space: nowrap; }
+    .result-item strong { display: block; margin-top: 3px; font-family: "Inter", system-ui, sans-serif; color: var(--navy); font-size: 18px; line-height: 1.2; white-space: nowrap; font-weight: 700; letter-spacing: -0.02em; }
     .result-item strong.positive { color: var(--green); }
     .result-item strong.negative { color: var(--red); }
     .result-item.featured { background: var(--cobalt-soft); margin: -9px -7px; padding: 9px 7px; }
@@ -118,23 +118,21 @@
     .switch-line span { color: var(--ink); font-weight: 600; }
     .overlap-note { margin: 8px 0 0 29px; color: var(--muted); font-size: 13px; }
 
-    .channel-ledger { margin-top: 22px; border-top: 1px solid var(--line); }
-    .channel-row { display: grid; grid-template-columns: minmax(84px, 1fr) repeat(4, minmax(75px, 0.8fr)); gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: end; }
+    .conversion-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .conversion-grid .control-group + .control-group { margin-top: 0; }
+    .conversion-options { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 18px; align-items: start; margin-top: 15px; }
+    .conversion-options .control-group { margin-top: 0; }
+    .conversion-options .switch-line { margin-top: 0; }
+    .conversion-options .overlap-note { margin-left: 29px; }
+
+    .channel-ledger { margin-top: 14px; border-top: 1px solid var(--line); }
+    .channel-row { display: grid; grid-template-columns: minmax(84px, 1fr) repeat(4, minmax(75px, 0.8fr)); gap: 8px; padding: 9px 0; border-bottom: 1px solid var(--line); align-items: end; }
     .channel-row:first-child { color: var(--muted); font-size: 12px; padding-top: 10px; }
     .channel-row > :not(:first-child) { text-align: right; }
     .channel-name { font-weight: 600; }
-    .channel-number { font-family: "IBM Plex Mono", monospace; font-size: 13px; white-space: nowrap; }
+    .channel-number { font-family: "Inter", system-ui, sans-serif; font-size: 13px; font-weight: 600; white-space: nowrap; }
     .channel-net.positive { color: var(--green); }
     .channel-net.negative { color: var(--red); }
-
-    .method { margin-top: 24px; background: white; border-left: 4px solid var(--cobalt); padding: 17px 20px; color: var(--muted); font-size: 14px; }
-    .method strong { color: var(--ink); }
-    .method-details { margin-top: 7px; }
-    .method summary { color: var(--ink); cursor: pointer; font-weight: 600; }
-    .method p { margin: 8px 0 0; }
-
-    .footer { display: flex; justify-content: space-between; gap: 20px; margin-top: 18px; color: var(--muted); font-size: 13px; }
-    .footer strong { color: var(--ink); }
 
     @media (max-width: 900px) {
       .decision-ledger { grid-template-columns: 1fr; }
@@ -142,25 +140,24 @@
       .parts { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
-      .shell { width: min(100% - 24px, 1180px); padding-top: 24px; }
+      .shell { width: min(100% - 24px, 1280px); padding-top: 24px; }
       .masthead { display: block; }
       .stamp { margin-top: 18px; }
       .decision-main, .bridge, .part-head, .part-body { padding-left: 20px; padding-right: 20px; }
       .bridge-equation { grid-template-columns: 1fr; gap: 9px; }
       .bridge-op { display: none; }
       .inputs { grid-template-columns: 1fr; }
+      .conversion-grid, .conversion-options { grid-template-columns: 1fr; }
+      .conversion-options .switch-line { margin-top: 3px; }
       .result-strip { grid-template-columns: 1fr 1fr; }
       .channel-row { grid-template-columns: 1fr 1fr; }
       .channel-row:first-child { display: none; }
       .channel-row > :not(:first-child) { text-align: left; }
-      .channel-row .channel-number::before { display: block; color: var(--muted); font-family: "Source Sans 3", sans-serif; font-size: 12px; }
+      .channel-row .channel-number::before { display: block; color: var(--muted); font-family: "Inter", system-ui, sans-serif; font-size: 12px; }
       .channel-row .channel-users::before { content: "Converting users"; }
       .channel-row .channel-seat::before { content: "Seat MRR"; }
       .channel-row .channel-displaced::before { content: "Displaced"; }
       .channel-row .channel-net::before { content: "Net"; }
-      .footer { display: block; }
-      .footer span { display: block; }
-      .footer span + span { margin-top: 5px; }
     }
   </style>
 </head>
@@ -232,29 +229,35 @@
           <p class="part-intro">One $20 seat replaces the attributed PPU or $97 revenue.</p>
         </div>
         <div class="part-body">
-          <div class="control-group">
-            <div class="label-row"><label for="ppu-rate">PPU users that convert</label><output id="ppu-rate-output">15%</output></div>
-            <input id="ppu-rate" type="range" min="0" max="100" step="1" value="15">
+          <div class="conversion-grid">
+            <div class="control-group">
+              <div class="label-row"><label for="ppu-rate">PPU users that convert</label><output id="ppu-rate-output">15%</output></div>
+              <input id="ppu-rate" type="range" min="0" max="100" step="1" value="15">
+            </div>
+
+            <div class="control-group">
+              <div class="label-row"><label for="sub97-rate">$97-linked users that convert</label><output id="sub97-rate-output">15%</output></div>
+              <input id="sub97-rate" type="range" min="0" max="100" step="1" value="15">
+            </div>
           </div>
 
-          <div class="control-group">
-            <div class="label-row"><label for="sub97-rate">$97-linked users that convert</label><output id="sub97-rate-output">15%</output></div>
-            <input id="sub97-rate" type="range" min="0" max="100" step="1" value="15">
-          </div>
+          <div class="conversion-options">
+            <div class="control-group">
+              <label class="field-label" for="ppu-pattern">Which PPU users convert first?</label>
+              <select id="ppu-pattern">
+                <option value="top" selected>Highest-revenue users</option>
+                <option value="proportional">Proportional across the user base</option>
+              </select>
+            </div>
 
-          <div class="control-group">
-            <label class="field-label" for="ppu-pattern">Which PPU users convert first?</label>
-            <select id="ppu-pattern">
-              <option value="top" selected>Highest-revenue users</option>
-              <option value="proportional">Proportional across the user base</option>
-            </select>
+            <div>
+              <label class="switch-line" for="overlap-to-ppu">
+                <input id="overlap-to-ppu" type="checkbox">
+                <span>Attribute the 866 overlap users to PPU</span>
+              </label>
+              <p class="overlap-note" id="overlap-note">Overlap is counted once under $97.</p>
+            </div>
           </div>
-
-          <label class="switch-line" for="overlap-to-ppu">
-            <input id="overlap-to-ppu" type="checkbox">
-            <span>Attribute the 866 overlap users to PPU</span>
-          </label>
-          <p class="overlap-note" id="overlap-note">Overlap is counted once under $97.</p>
 
           <div class="channel-ledger" aria-live="polite">
             <div class="channel-row"><span>Channel</span><span>Converting users</span><span>Seat MRR</span><span>Displaced</span><span>Net</span></div>
@@ -271,15 +274,6 @@
       </section>
     </div>
 
-    <aside class="method">
-      <strong>Model basis:</strong> GrossCharge is treated as PPU revenue. $97 adoption displaces the same percentage of attributed $97 MRR. The 866 overlap users are always counted once.
-      <details class="method-details">
-        <summary>Data definitions</summary>
-        <p>September PPU revenue is monthlyized by multiplying month-to-date GrossCharge by three. User counts are not time-scaled. Current data cutoff: 10 September 2026, 10:59:55 UTC.</p>
-      </details>
-    </aside>
-
-    <footer class="footer"><span><strong>Decision use:</strong> Adjust the levers live in the meeting.</span><span>Figures shown as modeled monthly revenue.</span></footer>
   </main>
 
   <script>
